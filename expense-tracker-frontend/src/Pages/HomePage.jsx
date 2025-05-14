@@ -41,7 +41,7 @@ const HomePage = () => {
   const [expense, setExpense] = useState({
     ID: "",
     Amount: "",
-    Category: "",
+    Category: "Groceries",
     Description: "",
     Date: "",
   });
@@ -130,7 +130,7 @@ const HomePage = () => {
         </div>
       )}
       {expenses.length === 0 && <div>No expenses yet...</div>}
-      <div className="flex justify-center items-center py-5 ">
+      {expenses.length > 0 && (<div className="flex justify-center items-center py-5 ">
         <div className="flex flex-col justify-center items-center border-2 border-gray-500 rounded-lg">
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-red-400 pt-2 px-2">
             &#8377; {totalExpenses}
@@ -187,7 +187,7 @@ const HomePage = () => {
             <Tooltip content={<CustomTooltip chart="pie" />} />
           </PieChart>
         </div>
-      </div>
+      </div>)}
     </>
   );
 };
