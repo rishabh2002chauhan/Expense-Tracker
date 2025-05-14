@@ -15,30 +15,15 @@ app.use(express.json());
 
 app.use("/api/expenses", expenseRouter);
 
-console.log("node env is " + process.env.NODE_ENV + "mode");
-console.log(path.join(__dirname, "/expense-tracker-frontend/dist"));
 if ((process.env.NODE_ENV || "").trim() === "production") {
-  console.log("production mode");
   app.use(
     express.static(path.join(__dirname, "/expense-tracker-frontend/dist"))
   );
   app.get("*name", (req, res) => {
-    try {
-      res.sendFile(
-        path.resolve(
-          __dirname,
-          "expense-tracker-frontend",
-          "dist",
-          "index.html"
-        )
-      );
-      console.log("index.html file sent");
-    } catch (error) {
-      console.log("error in sending file", error);
-    }
+    res.sendFile(
+      path.resolve(__dirname, "expense-tracker-frontend", "dist", "index.html")
+    );
   });
-} else {
-  console.log("development mode");
 }
 
 app.listen(PORT, () => {
